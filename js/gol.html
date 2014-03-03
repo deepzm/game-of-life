@@ -1,0 +1,45 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="css/reset.css">
+  <link rel="stylesheet" type="text/css" href="css/gol.css">
+  <title>Game of Life</title>
+
+</head>
+
+<body>
+		<div class="heading">
+			<div class="container">
+				<div class="site-name">
+					<h1>Game of Life</h1>
+				</div>
+			</div>
+		</div>
+
+		<!-- <div class="container">
+			<div class="section">
+				asdasd
+			</div>
+		</div> -->
+		<div id="gol" >
+
+		</div>
+
+		<div>
+			<button id="go-button"> Go </button>
+		</div>
+  
+
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  	<script src="script/gol.js"></script>
+  	<script type="text/javascript">
+  		var gol = new GameOfLife('gol', 6, 6);
+
+  		$("#go-button").click(function() {
+  			gol.go();  			
+  		});
+  	</script>
+</body>
+</html>
