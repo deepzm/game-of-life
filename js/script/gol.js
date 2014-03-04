@@ -156,6 +156,7 @@ function GameOfLife(playGroundDiv, rows, columns) {
 	this.grid = new Grid(rows, columns);
 	
 	var playGround = $('#'+playGroundDiv);
+	playGround.text("");
 
 	this.grid.appendTo(playGround);
 }

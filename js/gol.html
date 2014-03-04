@@ -18,24 +18,31 @@
 			</div>
 		</div>
 
-		<!-- <div class="container">
+		<div class="container">
 			<div class="section">
-				asdasd
+				<div class="panel">
+					<h1>Matrix size</h1> <input type="range"  id="matrix-size" min="4" max="20" value="6" step="1" />
+				</div>
+				<div id="gol" >
+
+				</div>
 			</div>
-		</div> -->
-		<div id="gol" >
-
+			<div>
+				<button id="go-button"> Go </button>
+			</div>
 		</div>
 
-		<div>
-			<button id="go-button"> Go </button>
-		</div>
   
 
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   	<script src="script/gol.js"></script>
   	<script type="text/javascript">
   		var gol = new GameOfLife('gol', 6, 6);
+
+  		$("#matrix-size").change(function () {
+  			var matrixSize = $("#matrix-size").val();
+  			gol = new GameOfLife('gol', matrixSize, matrixSize);
+  		})
 
   		$("#go-button").click(function() {
   			gol.go();  			
