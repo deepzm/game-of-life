@@ -6,6 +6,11 @@ module.exports = function(config) {
  
         // frameworks to use
         frameworks: ['jasmine'],
+
+        // for coverage
+        preprocessors : {
+          'src/script/*.js': 'coverage'
+        },
  
         // list of files / patterns to load in the browser
         files: [
@@ -19,7 +24,7 @@ module.exports = function(config) {
         ],
  
         // test results reporter to use
-        reporters: ['progress'],
+        reporters: ['progress', 'coverage'],
  
         // web server port
         port: 9876,
@@ -41,6 +46,11 @@ module.exports = function(config) {
  
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false
+        singleRun: true,
+
+        coverageReporter : {
+          type : 'html',
+          dir : 'coverage/'
+        }
     });
 };

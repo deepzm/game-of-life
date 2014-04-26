@@ -8,7 +8,7 @@ describe("Cell tests", function () {
         var cell = new Cell();
  
         // Assert
-        expect(false).toBe(cell.isAlive());
+        expect(cell.isAlive()).toBe(false);
     });
 
     it("Can make alive a cell", function () {
@@ -20,7 +20,7 @@ describe("Cell tests", function () {
         cell.makeAlive();
  
         // Assert
-        expect(true).toBe(cell.isAlive());
+        expect(cell.isAlive()).toBe(true);
     });
 
 
@@ -32,32 +32,32 @@ describe("Cell tests", function () {
         cell.kill();
  
         // Assert
-        expect(false).toBe(cell.isAlive());
+        expect(cell.isAlive()).toBe(false);
     });
 
 
     it("Can toggle cell from dead to alive", function () {
     	 // Arrange
         var cell = new Cell();
-        expect(false).toBe(cell.isAlive());
+        expect(cell.isAlive()).toBe(false);
 
         //Act
         cell.toggle();
  
         // Assert
-        expect(true).toBe(cell.isAlive());
+        expect(cell.isAlive()).toBe(true);
     });
 
     it("Can toggle cell from dead to alive", function () {
     	 // Arrange
         var cell = new Cell();
         cell.makeAlive();
-        expect(true).toBe(cell.isAlive());
+        expect(cell.isAlive()).toBe(true);
 
         //Act
         cell.toggle();
  
         // Assert
-        expect(false).toBe(cell.isAlive());
+        expect(cell.isAlive()).toBe(false);
     });
 });

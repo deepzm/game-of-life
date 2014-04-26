@@ -23,9 +23,9 @@ describe("Row tests", function () {
 
 
         // Assert
-        expect(false).toBe(row._cells[0].isAlive());
-        expect(true).toBe(row._cells[1].isAlive());
-        expect(false).toBe(row._cells[2].isAlive());
+        expect(row._cells[0].isAlive()).toBe(false);
+        expect(row._cells[1].isAlive()).toBe(true);
+        expect(row._cells[2].isAlive()).toBe(false);
     });
 
 
@@ -39,9 +39,9 @@ describe("Row tests", function () {
 
 
         // Assert
-        expect(0).toBe(row.isAlive(0));
-        expect(1).toBe(row.isAlive(1));
-        expect(0).toBe(row.isAlive(2));
+        expect(row.isAlive(0)).toBe(0);
+        expect(row.isAlive(1)).toBe(1);
+        expect(row.isAlive(2)).toBe(0);
     });
 
 
@@ -55,8 +55,8 @@ describe("Row tests", function () {
 
 
         // Assert
-        expect(0).toBe(row.isAlive(-1));
-        expect(0).toBe(row.isAlive(9));
+        expect(row.isAlive(-1)).toBe(0);
+        expect(row.isAlive(9)).toBe(0);
     });    
 
 
@@ -67,9 +67,9 @@ describe("Row tests", function () {
         row.applyState([false, true, false]);
 
         // Act
-        expect(1).toBe(row.adjacentLiveCells(0));
-        expect(0).toBe(row.adjacentLiveCells(1));
-        expect(1).toBe(row.adjacentLiveCells(2));
+        expect(row.adjacentLiveCells(0)).toBe(1);
+        expect(row.adjacentLiveCells(1)).toBe(0);
+        expect(row.adjacentLiveCells(2)).toBe(1);
 
     });
 
@@ -80,9 +80,9 @@ describe("Row tests", function () {
         row.applyState([false, true, true]);
 
         // Act
-        expect(1).toBe(row.liveCells(0));
-        expect(2).toBe(row.liveCells(1));
-        expect(2).toBe(row.liveCells(2));
+        expect(row.liveCells(0)).toBe(1);
+        expect(row.liveCells(1)).toBe(2);
+        expect(row.liveCells(2)).toBe(2);
 
     });
 });
