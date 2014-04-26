@@ -35,4 +35,29 @@ describe("Cell tests", function () {
         expect(false).toBe(cell.isAlive());
     });
 
+
+    it("Can toggle cell from dead to alive", function () {
+    	 // Arrange
+        var cell = new Cell();
+        expect(false).toBe(cell.isAlive());
+
+        //Act
+        cell.toggle();
+ 
+        // Assert
+        expect(true).toBe(cell.isAlive());
+    });
+
+    it("Can toggle cell from dead to alive", function () {
+    	 // Arrange
+        var cell = new Cell();
+        cell.makeAlive();
+        expect(true).toBe(cell.isAlive());
+
+        //Act
+        cell.toggle();
+ 
+        // Assert
+        expect(false).toBe(cell.isAlive());
+    });
 });
