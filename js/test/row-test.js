@@ -39,9 +39,9 @@ describe("Row tests", function () {
 
 
         // Assert
-        expect(row.isAlive(0)).toBe(0);
-        expect(row.isAlive(1)).toBe(1);
-        expect(row.isAlive(2)).toBe(0);
+        expect(row.isAlive(0)).toBe(false);
+        expect(row.isAlive(1)).toBe(true);
+        expect(row.isAlive(2)).toBe(false);
     });
 
 
@@ -55,8 +55,8 @@ describe("Row tests", function () {
 
 
         // Assert
-        expect(row.isAlive(-1)).toBe(0);
-        expect(row.isAlive(9)).toBe(0);
+        expect(row.isAlive(-1)).toBe(false);
+        expect(row.isAlive(9)).toBe(false);
     });    
 
 

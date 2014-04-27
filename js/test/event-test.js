@@ -4,16 +4,20 @@ describe("event tests", function () {
 
 	var eventObj;
 	var sender;
+	var listenerOne;
+	var listenerTwo;
 
 	beforeEach(function () {
 		sender  = jasmine.createSpy('sender');
 		eventObj = new Event(sender);
+
+		listenerOne = jasmine.createSpy("l1");
+		listenerTwo = jasmine.createSpy("l2");
+
 	});
 
 	it("Can attach listeners", function () {
-		var listenerOne = jasmine.createSpy("l1");
-		var listenerTwo = jasmine.createSpy("l2");
-
+		
 		eventObj.attach(listenerOne);
 		eventObj.attach(listenerTwo);
 
@@ -21,8 +25,7 @@ describe("event tests", function () {
 	});
 
 	it("Will notify listeners", function () {
-		var listenerOne = jasmine.createSpy("l1");
-		var listenerTwo = jasmine.createSpy("l2");
+		
 		eventObj.attach(listenerOne);
 		eventObj.attach(listenerTwo);
 		var arguements = 9;

@@ -19,11 +19,9 @@ Row.prototype.applyState = function (state) {
 
 Row.prototype.isAlive = function(index) {
 	if(index < 0 || index >= this._cells.length) {
-		return 0;	
-	} else if(this._cells[index].isAlive()) {
-		return 1;
+		return false;	
 	} else {
-		return 0;
+		return this._cells[index].isAlive();
 	}
 }
 

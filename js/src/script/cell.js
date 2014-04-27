@@ -1,5 +1,6 @@
 function Cell () {
 	this._isAlive = false;
+	this.changeStateEvent = new Event(this);
 }
 
 
@@ -9,10 +10,12 @@ Cell.prototype.isAlive = function () {
 
 Cell.prototype.kill = function () {
 	this._isAlive = false;
+	this.changeStateEvent.notify();
 }
 
 Cell.prototype.makeAlive = function() {
 	this._isAlive = true;
+	this.changeStateEvent.notify();
 }
 
 Cell.prototype.toggle = function() {
@@ -21,5 +24,10 @@ Cell.prototype.toggle = function() {
 	} else {
 		this.makeAlive();
 	}
+	this.changeStateEvent.notify();
 	return this.isAlive();
 }
+
+Cell.prototype.addListener = function (listener) {
+	this.changeStateEvent.attach(listener);
+};

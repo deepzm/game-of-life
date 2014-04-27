@@ -46,17 +46,22 @@
   
 
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-  	<script src="script/gol.js"></script>
+    <script src="script/event.js"></script>
+    <script src="script/cell.js"></script>
+    <script src="script/row.js"></script>
+    <script src="script/gameoflife.js"></script>
+    <script src="script/gameoflifeboard.js"></script>
+    <script src="script/controller.js"></script>
   	<script type="text/javascript">
       $("#stop-button").css({
         'display': 'none'
       });
 
-  		var gol = new GameOfLife('gol', 6, 6);
+  		var gol = new GameOfLifeController(6, 6, 'gol');
 
   		$("#matrix-size").change(function () {
   			var matrixSize = $("#matrix-size").val();
-  			gol = new GameOfLife('gol', matrixSize, matrixSize);
+  			gol = new GameOfLifeController(matrixSize, matrixSize, 'gol');
   		})
 
   		var intervalId;
