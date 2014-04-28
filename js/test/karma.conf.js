@@ -41,6 +41,8 @@ module.exports = function(config) {
  
         // Start these browsers
         browsers: ['PhantomJS'],
+
+        singleRun : true,
  
         // coverageReporter : {
         //   type : 'html',
