@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" ng-app="gameoflifeApp">
+<head>
+  <meta charset="utf-8">
+  <title>My HTML File</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="js/app.js"></script>  
+  <script src="js/controllers.js"></script>  
+  <script src="js/filter.js"></script>
+</head>
+<body>
+	<div class="heading">
+		<div class="container">
+			<div class="site-name">
+				<h1>Game of Life</h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="section">
+			<div class="panel">
+				<h1>Matrix size</h1> <input type="range"  id="matrix-size" min="4" max="20" value="6" step="1" />
+			</div>
+			<div ng-controller="GameOfLifeController">
+				<div id="gol" >
+					<div class="gol-grid" >
+						<div class="gol-row" ng-repeat="golRow in golGrid" >
+							<div class="gol-cell {{golCell.status | deadORalive}}" ng-repeat='golCell in golRow'>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="gol-grid"><div class="gol-row"><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div></div><div class="gol-row"><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div></div><div class="gol-row"><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div></div><div class="gol-row"><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div></div><div class="gol-row"><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div></div><div class="gol-row"><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div><div class="gol-cell dead"></div></div></div>
+ -->
+				</div>					
+			</div>
+			<div>
+			  <button id="go-button"> Go </button>
+			  <button id="stop-button"> Stop </button>
+			  <button id="step-button"> Step </button>
+			</div>
+			<div class="panel-bulletpoints">          
+			  <ul>
+			    <li>Toggle between live/dead by clicking the cell.</li>
+			    <li>Go - Starts an evolution.</li>
+			    <li>Stop - Stops evolution.</li>
+			    <li>Step - Evolves one step at a time.</li>
+			    <li><a href="http://en.wikipedia.org/wiki/Conway's_Game_of_Life" >Game of Life rules</a></li>
+			  </ul>
+			</div>
+		</div>
+	</div>
+
+  
+
+</body>
+</html>
