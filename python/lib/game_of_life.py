@@ -1,4 +1,4 @@
-from game_of_life_models import Grid
+from game_of_life_models import Grid, on
 
 
 class GameOfLife(object):
@@ -12,9 +12,11 @@ class GameOfLife(object):
         grid = self.grid
         new_grid_state = grid.new_state()
         for cell in grid:
+            if cell.has_fewer_than_two_live_neighbours(on(grid)):
+                new_grid_state.dead().at(cell.location())
 
-            if cell.has_fewer_than_two_live_neighbours(grid):
-                new_grid_state.dead().at(cell.location)
+            elif cell.has_exactly_three_live_neighbours(grid):
+                new_grid_state.alive().at(cell.location)
 
             elif cell.has_two_or_three_live_neighbours(grid):
                 new_grid_state.preserve(cell.location)
@@ -22,12 +24,10 @@ class GameOfLife(object):
             elif cell.more_than_three_live_neighbours(grid):
                 new_grid_state.dead().at(cell.location)
 
-            elif cell.exactly_three_live_neighbours_becomes(grid):
-                new_grid_state.alive().at(cell.location)
-
             else:
                 print 'Are you kidding me!!'
 
         grid.apply(new_grid_state)
+
 
 GameOfLife(Grid()).go()
