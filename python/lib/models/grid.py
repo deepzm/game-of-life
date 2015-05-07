@@ -1,50 +1,15 @@
-from game_of_life_exceptions import StateNotSavedError, StateNotSetError
 
-
-ALIVE = True
-DEAD = False
-
-
-class Grid(object):
-    """Game of life grid"""
-
-    def __init__(self, rows=5, columns=5):
-        self.rows = rows
-        self.columns = columns
-        self.cells = []
-        for i in range(rows):
-            column = []
-            for j in range(columns):
-                column.append(Cell(i , j))
-            self.cells.append(column)
-
-    def cell(self, row, column):
-        return self.cells[row][column]
-
-    def new_state(self):
-        return GridState(self.rows, self.columns)
-
-    def has_row(self, row):
-        return row < self.rows
-
-    def has_column(self, column):
-        return column < self.columns
-
-    def __iter__(self):
-        return GridIterator(self)
-
-    def apply(self, state):
-        for row in range(self.rows):
-            for column in range(self.columns):
-                cell = self.cells[row][column]
-                cell.set(state.get(cell.location()))
+from models.cell import Cell
+from errors.exceptions import StateNotSavedError, StateNotSetError
 
 
 class GridState(object):
     """Stores the state of a grid"""
 
-    def __init__(self, rows, columns):
-        self.state = [[False for x in range(5)] for x in range(5)]
+    def __init__(self, state_matrix):
+        self.state = self.to_boolean_matrix(state_matrix)
+        self.rows = len(state_matrix)
+        self.columns = len(state_matrix[0])
         self.new_state = None
 
     def dead(self):
@@ -80,6 +45,68 @@ class GridState(object):
 
     def has_new_state(self):
         return self.new_state is not None
+
+    def to_boolean_matrix(self, state_matrix):
+        state = []
+        for row in state_matrix:
+            columns = []
+            for column in row:
+                columns.append(self.to_boolean(column))
+            state.append(columns)
+        return state
+
+    def to_boolean(self, state):
+        if state == 1:
+            return True
+        else:
+            return False
+
+
+def default_matrix_for(rows=5, columns=5):
+    default_matrix = [[0 for column in range(columns)] for row in range(rows)]
+    return default_matrix
+
+
+DEFAULT_GRID_STATE = GridState(default_matrix_for())
+
+
+class Grid(object):
+    """Game of life grid"""
+
+    def __init__(self, state=DEFAULT_GRID_STATE):
+        self.rows = state.rows
+        self.columns = state.columns
+        self.cells = []
+        self.__init_cells__()
+        self.apply(state)
+
+    def __init_cells__(self):
+        for i in range(self.rows):
+            column = []
+            for j in range(self.columns):
+                column.append(Cell(i, j))
+            self.cells.append(column)
+
+    def cell(self, row, column):
+        return self.cells[row][column]
+
+    def new_state(self):
+        return GridState(default_matrix_for(self.rows, self.columns))
+
+    def has_row(self, row):
+        return row < self.rows
+
+    def has_column(self, column):
+        return column < self.columns
+
+    def __iter__(self):
+        return GridIterator(self)
+
+    def apply(self, state):
+        for row in range(self.rows):
+            for column in range(self.columns):
+                cell = self.cells[row][column]
+                cell.set(state.get(cell.location()))
 
 
 class GridManager(object):
@@ -132,60 +159,8 @@ class GridIterator(object):
             self.row += 1
 
 
-class Cell(object):
-    """Game of life cell"""
-
-    def __init__(self, row, column, state=DEAD):
-        self.state = state
-        self.row = row
-        self.column = column
-
-    def state(self):
-        return self.state
-
-    def make_alive(self):
-        self.state = ALIVE
-
-    def kill(self):
-        self.state = DEAD
-
-    def set(self, state):
-        self.state = state
-
-    def location(self):
-        return CellLocation(self.row, self.column)
-
-    def has_fewer_than_two_live_neighbours(self, grid_manager):
-        return grid_manager.count_adjacent_live_cells(self.location()) < 2
-
-    def has_two_or_three_live_neighbours(self, grid_manager):
-        adjacent_live_cells = grid_manager.count_adjacent_live_cells(self.location())
-        return adjacent_live_cells == 2 or adjacent_live_cells == 3
-
-    def more_than_three_live_neighbours(self, grid_manager):
-        return grid_manager.count_adjacent_live_cells(self.location()) > 3
-
-    def has_exactly_three_live_neighbours(self, grid_manager):
-        return grid_manager.count_adjacent_live_cells(self.location()) == 3
-
-
-class CellLocation(object):
-    """Cell location in Grid"""
-
-    def __init__(self, row, column):
-        self.row = row
-        self.previous_row = row - 1
-        self.next_row = row + 1
-        self.column = column
-        self.previous_column = column - 1
-        self.next_column = column + 1
-
-    def row(self):
-        return row
-
-    def column(self):
-        return column
-
-
 def on(grid):
     return GridManager(grid)
+
+def with_state(matrix):
+    return GridState(matrix)

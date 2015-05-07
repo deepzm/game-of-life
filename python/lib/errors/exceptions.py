@@ -1,4 +1,5 @@
 
+
 class StateNotSavedError(Exception):
     def __str__(self):
         return repr("A previous state has not been saved")
