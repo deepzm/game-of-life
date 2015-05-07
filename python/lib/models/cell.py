@@ -23,7 +23,6 @@ class Cell(Widget):
         self.state = DEAD
 
     def set(self, state):
-        print state
         self.state = state
 
     def location(self):

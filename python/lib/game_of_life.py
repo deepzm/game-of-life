@@ -11,7 +11,7 @@ class GameOfLife(object):
         self.grid = Grid(state)
 
     def evolve(self, dt):
-        print 'evolve'
+        print 'evolving'
         grid = self.grid
         new_grid_state = grid.new_state()
         for cell in grid:
@@ -33,5 +33,5 @@ class GameOfLife(object):
         grid.apply(new_grid_state)
 
     def start_evolving(self):
-        Clock.schedule_interval(self.evolve, 0.75)
+        Clock.schedule_interval(self.evolve, 0.5)
         GameOfLifeUI().game_with(self.grid).run()

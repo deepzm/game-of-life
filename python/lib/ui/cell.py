@@ -19,11 +19,11 @@ class UICell(Widget):
     def update_color(self, instance, model):
         if model:
             with self.canvas:
-                Color(.5, .5, .5)
+                Color(0.78, 0.1, 0.1)
                 size = [self.size[0] - 2, self.size[1] - 2]
                 self.rect = Rectangle(pos=self.pos, size=size)
         else:
             with self.canvas:
-                Color(0, 1, 0, 1)
+                Color(.5, .5, .5)
                 size = [self.size[0] - 2, self.size[1] - 2]
                 self.rect = Rectangle(pos=self.pos, size=size)
