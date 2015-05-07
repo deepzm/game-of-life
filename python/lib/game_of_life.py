@@ -1,4 +1,4 @@
-from models.grid import Grid, on, with_state
+from models.grid import Grid, on
 from ui.game_of_life import GameOfLifeUI
 from kivy.clock import Clock
 

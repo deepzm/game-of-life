@@ -162,5 +162,6 @@ class GridIterator(object):
 def on(grid):
     return GridManager(grid)
 
+
 def with_state(matrix):
     return GridState(matrix)
