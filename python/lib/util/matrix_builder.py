@@ -10,4 +10,4 @@ def generate_martix(rows, columns):
             sys.stdout.write(str(column) + ',')
         sys.stdout.write('],')
 
-generate_martix(20, 20)
+generate_martix(50, 50)
