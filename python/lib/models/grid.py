@@ -163,5 +163,5 @@ def on(grid):
     return GridManager(grid)
 
 
-def with_state(matrix):
+def with_state_for(matrix):
     return GridState(matrix)

@@ -1,10 +1,10 @@
 import kivy
 from game_of_life import GameOfLife
-from models.grid import with_state
+from models.grid import with_state_for
 kivy.require('1.0.6')  # replace with your current kivy version !
 
 
-for_toad = [
+toad = [
     [0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0],
     [0, 0, 1, 1, 1, 0],
@@ -13,7 +13,7 @@ for_toad = [
     [0, 0, 0, 0, 0, 0]
 ]
 
-for_blinker = [
+blinker = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
     [0, 1, 1, 1, 0],
@@ -21,7 +21,7 @@ for_blinker = [
     [0, 0, 0, 0, 0]
 ]
 
-for_beacon = [
+beacon = [
     [0, 0, 0, 0, 0, 0],
     [0, 1, 1, 0, 0, 0],
     [0, 1, 1, 0, 0, 0],
@@ -31,5 +31,5 @@ for_beacon = [
 ]
 
 GameOfLife(
-    with_state(for_toad)
+    with_state_for(blinker)
     ).start_evolving()
